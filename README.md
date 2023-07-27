@@ -31,3 +31,21 @@ export class BlogPostComponent {
     console.log(file);
     this.post.image = file;
   }
+
+
+  ----------------
+
+  export class BlogPostService {
+  private apiUrl = 'https://your-api-url.com/posts';
+
+  constructor(private http: HttpClient) {}
+
+  createPost(post: any): Observable<any> {
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('description', post.description);
+    formData.append('image', post.image);
+
+    return this.http.post(this.apiUrl, formData);
+  }
+}
